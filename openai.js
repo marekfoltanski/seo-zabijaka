@@ -12,7 +12,7 @@ const createContent = async (title, headings = false) => {
   const openai = new OpenAIApi(configuration);
   const prompt = headings
     ? `Napisz dwa akapity na temat "${title}".`
-    : `Create an SEO friendly article on "${title}". Text should has 4 headings. Write 2 paragraphs for each heading. Format text to HTML, paragraphs should be placed into <p> and headings should be placed into <h2>`;
+    : `Napisz zoptymalizowany pod SEO artykuł blogowy na temat "${title}". Tekst powinien zawierać 3 nagłówki, dla każdego nagłówka napisz 2 akapity. Tekst ma być sformatowany do HTML, nagłówki umieść w <h2>, a akapity w <p>`;
 
   const response = await openai
     .createCompletion({

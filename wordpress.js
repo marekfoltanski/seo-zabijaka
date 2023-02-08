@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import { keys } from "./keys.js";
-
 import { fileName } from "./functions.js";
 
 async function uploadImage(path, title) {
@@ -26,7 +25,6 @@ async function uploadImage(path, title) {
 }
 
 async function createPost(title, content, imageId, categories, tags) {
-  const contentWithoutH1 = content.substring(content.indexOf("</h1>") + 5);
   const createdPost = await fetch(`${keys.WP_ENDPOINT}posts`, {
     method: "POST",
     headers: {
@@ -38,7 +36,7 @@ async function createPost(title, content, imageId, categories, tags) {
     },
     body: JSON.stringify({
       title: title,
-      content: contentWithoutH1,
+      content: content,
       featured_media: imageId ? imageId : null,
       status: "publish",
       categories: categories,
