@@ -18,14 +18,6 @@ const getPosts = () => {
   });
 };
 
-const timeoutTest = (title = "asd") => {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      const result = title;
-      resolve(result);
-    }, 1000)
-  );
-};
 const fileName = (str) =>
   str
     .replace(/\s+/g, "-")
@@ -33,7 +25,8 @@ const fileName = (str) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "")
     .replace(/[.,\/#!$%\^&\*;:{}=\_?`~()]/g, "")
-    .replace(/\s{2,}/g, " ");
+    .replace(/\s{2,}/g, " ")
+    .replace(/ł/g, "l");
 
 const saveTxt = async (content, title) => {
   const name = fileName(title);
