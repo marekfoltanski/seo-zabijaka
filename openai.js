@@ -14,26 +14,34 @@ const createContent = async (title, headings = false) => {
     ? `Napisz dwa akapity na temat "${title}".`
     : `Napisz zoptymalizowany pod SEO artykuł blogowy na temat "${title}". Tekst powinien zawierać 3 nagłówki, dla każdego nagłówka napisz 2 akapity. Tekst ma być sformatowany do HTML, nagłówki umieść w <h2>, a akapity w <p>`;
 
-  const response = await openai
-    .createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      temperature: 1,
-      max_tokens: 3700,
-      top_p: 0,
-      frequency_penalty: headings ? 0.5 : 0.3,
-      presence_penalty: headings ? 1 : 0.7,
-    })
-    .then((res) => res.data.choices[0].text)
-    .catch((error) => ({
-      error: true,
-      statusText: error.response.statusText,
-    }));
+  const retry = async (ms) =>
+    new Promise((resolve) => {
+      openai
+        .createCompletion({
+          model: "text-davinci-003",
+          prompt: prompt,
+          temperature: 1,
+          max_tokens: 3700,
+          top_p: 0,
+          frequency_penalty: headings ? 0.5 : 0.3,
+          presence_penalty: headings ? 1 : 0.7,
+        })
+        .then((res) => resolve(res.data.choices[0].text))
+        .catch(() => {
+          setTimeout(() => {
+            console.log(`powtarzam: ${title}`);
+            retry(ms).then(resolve);
+          }, ms);
+        });
+    });
+
+  const response = await retry(5000);
   return response;
 };
 
 const contentWithHeadings = async (title, headings) => {
   console.log(`piszę: ${title}`);
+
   const arr = headings.map((item) => createContent(item, true));
   const formatText = (item) => {
     return item
