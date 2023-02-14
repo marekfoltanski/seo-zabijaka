@@ -13,7 +13,8 @@ const createContent = async (title, headings = false) => {
   const prompt = headings
     ? `Napisz dwa akapity na temat "${title}".`
     : `Napisz zoptymalizowany pod SEO artykuł blogowy na temat "${title}". Tekst powinien zawierać 3 nagłówki, dla każdego nagłówka napisz 2 akapity. Tekst ma być sformatowany do HTML, nagłówki umieść w <h2>, a akapity w <p>`;
-
+  let failedRequests = 0;
+  const maxFails = 4;
   const retry = async (ms) =>
     new Promise((resolve) => {
       openai
@@ -27,11 +28,24 @@ const createContent = async (title, headings = false) => {
           presence_penalty: headings ? 1 : 0.7,
         })
         .then((res) => resolve(res.data.choices[0].text))
-        .catch(() => {
-          setTimeout(() => {
-            console.log(`powtarzam: ${title}`);
-            retry(ms).then(resolve);
-          }, ms);
+        .catch((error) => {
+          if (
+            (error.response.status === 429 || error.response.status === 500) &&
+            failedRequests < maxFails
+          ) {
+            setTimeout(() => {
+              failedRequests++;
+              console.log(
+                `powtarzam: ${title} (${error.response.statusText}) ${failedRequests} / ${maxFails}`
+              );
+              retry(ms).then(resolve);
+            }, ms);
+          } else {
+            resolve({
+              error: true,
+              statusText: error.response.statusText,
+            });
+          }
         });
     });
 
