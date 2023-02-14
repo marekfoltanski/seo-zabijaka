@@ -1,3 +1,22 @@
+# SEO ZABIJAKA
+**Cieszę się, że trafiłeś na to repozytorium. Jeżeli uważasz, że narzędzie jest przydatne to możesz postawić mi kawę na Buy Me A Coffe :)**
+
+<a href="https://www.buymeacoffee.com/marekfoltas" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+**Spis treści**
+
+- [SEO ZABIJAKA](#seo-zabijaka)
+  * [Czym jest SEO ZABIJAKA?](#czym-jest-seo-zabijaka)
+  * [Jak to działa?](#jak-to-działa)
+  * [Jak odpalić SEO ZABIJAKĘ?](#jak-odpalić-seo-zabijakę)
+    + [Przygotowanie środowiska](#przygotowanie-środowiska)
+    + [Klucze API](#klucze-api)
+      - [OpenAI API](#openai-api)
+      - [Pixabay API](#pixabay-api)
+      - [Wordpress API](#wordpress-api)
+    + [Plik CSV](#plik-csv)
+    + [Uruchom narzędzie](#uruchom-narzędzie)
+
 ## Czym jest SEO ZABIJAKA?
 
 **SEO ZABIJAKA** to narzędzie, które samodzielnie napisze i opublikuje na Wordpress dowolną liczbę tekstów. Po Twojej stronie jest jedynie podanie listy tematów, dla których treści mają zostać stworzone. 
