@@ -23,11 +23,12 @@ const mainFunction = async (post, summary, options) => {
     const imagePath = image
       ? await getImage(post["Image search query"], post["Title"])
       : null;
-    const imageId = imagePath
-      ? await uploadImage(imagePath, post["Title"])
-      : null;
 
     if (wordpress) {
+      const imageId = imagePath
+        ? await uploadImage(imagePath, post["Title"])
+        : null;
+      
       const categories = post["Categories"];
       const tags = post["Tags"];
       const createdPost = await createPost(
