@@ -19,7 +19,7 @@ const createContent = async (title, headings = false) => {
     new Promise((resolve) => {
       openai
         .createCompletion({
-          model: "text-davinci-003",
+          model: "gpt-3.5-turbo",
           prompt: prompt,
           temperature: 1,
           max_tokens: 3700,
