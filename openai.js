@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
-import { keys } from "./keys.js";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const createContent = async (title, headings = false) => {
   if (!headings) {
@@ -7,7 +8,7 @@ const createContent = async (title, headings = false) => {
   }
 
   const configuration = new Configuration({
-    apiKey: keys.AI_KEY,
+    apiKey: process.env.AI_KEY,
   });
   const openai = new OpenAIApi(configuration);
   const prompt = headings

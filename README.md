@@ -19,7 +19,7 @@
 
 ## Czym jest SEO ZABIJAKA?
 
-**SEO ZABIJAKA** to narzędzie, które samodzielnie napisze i opublikuje na Wordpress dowolną liczbę tekstów. Po Twojej stronie jest jedynie podanie listy tematów, dla których treści mają zostać stworzone. 
+**SEO ZABIJAKA** to narzędzie, które samodzielnie napisze i opublikuje na Wordpress dowolną liczbę tekstów. Po Twojej stronie jest jedynie podanie listy tematów, dla których treści mają zostać stworzone.
 
 Średni czas stworzenia i opublikowania jednego tekstu to około **30 sekund**, taka wydajność pozwala między innymi na błyskawiczne tworzenie zaplecz SEO. Wydajność może być różna w zależności od obłożenia API OpenAI.
 
@@ -57,7 +57,7 @@ Po zainstalowaniu wszystkich dependencji przystąp do konfiguracji narzędzia.
 
 ### Klucze API
 
-Niezbędnym do poprawnego działania **SEO ZABIJAKI** jest podanie wszystkich kluczy API. Klucze dodaj w pliku **keys.js**.
+Niezbędnym do poprawnego działania **SEO ZABIJAKI** jest podanie wszystkich kluczy API. Skopiuj zawartość pliku `.env.example` i zapisz pod nazwą `.env`.
 
 #### OpenAI API
 
@@ -67,7 +67,7 @@ Najpierw musisz założyć konto tutaj:
 
 Jeżeli nie zakładałeś wcześniej konta na OpenAI to dostaniesz **18$** na przetestowanie. W innym wypadku musisz dodać formę płatności i ustawić limity $, których nie chcesz przekroczyć. Koszt tworzenia treści jest śmiesznie niski, więc nie musisz się martwić wysokimi kosztami.
 
-Klucz API podaj w pliku keys.js jako **AI_KEY**.
+Klucz API podaj w pliku `.env` jako **AI_KEY**.
 
 #### Pixabay API
 
@@ -76,7 +76,7 @@ Załóż konto tutaj: \
 
 API jest darmowe, jeżeli jesteś zalogowany to klucz znajdziesz pod powyższym linkiem pod nagłówkiem Parameters.
 
-Klucz API podaj w pliku keys.js jako **PB_KEY**.
+Klucz API podaj w pliku `.env` jako **PB_KEY**.
 
 
 #### Wordpress API
@@ -86,9 +86,9 @@ Klucz API podaj w pliku keys.js jako **PB_KEY**.
 Każda strona oparta o Wordpress ma domyślnie swoje REST API. Najpierw sprawdź swój endpoint, powinien być dostępny pod adresem: \
 [https://twoja-domena.pl/wp-json/wp/v2/](https://twoja-domena.pl/wp-json/wp/v2/)
 
-Podaj endpoint w pliku keys.js jako **WP_ENDPOINT**
+Podaj endpoint w pliku `.env` jako **WP_ENDPOINT**
 
-Następnie stwórz Hasło aplikacji. Żeby to zrobić przejdź w dashboardzie wordpressa do zakładki **Użytkownicy > Profil**. Na samym dole jest sekcja “Hasła aplikacji”. Podaj nazwę hasła i kliknij “Dodaj nowe hasło aplikacji”. Wygenerowane hasło wklej w pliku keys.js jako **WP_PASS**.
+Następnie stwórz Hasło aplikacji. Żeby to zrobić przejdź w dashboardzie wordpressa do zakładki **Użytkownicy > Profil**. Na samym dole jest sekcja “Hasła aplikacji”. Podaj nazwę hasła i kliknij “Dodaj nowe hasło aplikacji”. Wygenerowane hasło wklej w pliku `.env` jako **WP_PASS**.
 
 Jeżeli masz problem z wygenerowaniem hasła to [tutaj](https://www.paidmembershipspro.com/create-application-password-wordpress/) instrukcja.
 
@@ -122,18 +122,14 @@ W konsoli będziesz widział postęp tworzonych treści. Wszystkie teksty są na
 
 **Uwaga: Może się zdarzyć, że ze względu na duże obciążenie API OpenAI część tekstów się nie wygeneruje. Możesz to później sprawdzić w pliku summary.csv i przygotować nowy plik data.csv dla tych tekstów, które nie zostały napisane i odpalić narzędzie jeszcze raz.**
 
-Jeżeli chcesz stworzyć teksty, ale nie chcesz ich publikować na wordpressie to w pliku index.js zmień na samym dole:
+Jeżeli chcesz stworzyć teksty, ale nie chcesz ich publikować na wordpressie to w pliku `.env` zmień:
 ```
-app({
-  wordpress: true,
-});
+PUBLISH_ON_WORDPRESS=true
 ```
 
 na:
 ```
-app({
-  wordpress: false,
-});
+PUBLISH_ON_WORDPRESS=false
 ```
 
 Wtedy teksty razem ze zdjęciami zostaną zapisane na dysku w folderze **posts**, ale nie zostaną dodane do wordpressa.

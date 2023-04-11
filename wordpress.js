@@ -1,17 +1,18 @@
 import fetch from "node-fetch";
 import fs from "fs";
-import { keys } from "./keys.js";
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { fileName } from "./functions.js";
 
 async function uploadImage(path, title) {
   const name = fileName(title);
-  const createdImage = await fetch(`${keys.WP_ENDPOINT}media`, {
+  const createdImage = await fetch(`${process.env.WP_ENDPOINT}media`, {
     method: "POST",
     headers: {
       "Content-Disposition": `attachment; filename="${name}.jpg"`,
       "Content-Type": "image/jpeg",
       Authorization: `Basic ${Buffer.from(
-        `${keys.WP_USER}:${keys.WP_PASS}`,
+        `${process.env.WP_USER}:${process.env.WP_PASS}`,
         "utf-8"
       ).toString("base64")}`,
     },
@@ -25,12 +26,12 @@ async function uploadImage(path, title) {
 }
 
 async function createPost(title, content, imageId, categories, tags) {
-  const createdPost = await fetch(`${keys.WP_ENDPOINT}posts`, {
+  const createdPost = await fetch(`${process.env.WP_ENDPOINT}posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Basic ${Buffer.from(
-        `${keys.WP_USER}:${keys.WP_PASS}`,
+        `${process.env.WP_USER}:${process.env.WP_PASS}`,
         "utf-8"
       ).toString("base64")}`,
     },

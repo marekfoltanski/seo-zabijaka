@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { getPosts, saveTxt, saveToCsv } from "./functions.js";
 import { createContent, contentWithHeadings } from "./openai.js";
 import { getImage } from "./pixabay.js";
@@ -71,5 +74,5 @@ const app = async (
 };
 
 app({
-  wordpress: true,
+  wordpress: process.env.PUBLISH_ON_WORDPRESS,
 });

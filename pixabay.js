@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import download from "image-downloader";
-import { keys } from "./keys.js";
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { fileName } from "./functions.js";
 
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -22,7 +23,7 @@ const downloadImage = (url, title) => {
 
 const getImage = async (q, title) => {
   const query = encodeURIComponent(q);
-  const url = `https://pixabay.com/api/?key=${keys.PB_KEY}&q=${query}&image_type=photo?lang=en`;
+  const url = `https://pixabay.com/api/?key=${process.env.PB_KEY}&q=${query}&image_type=photo?lang=en`;
   const data = await fetch(url)
     .then((res) => (res.status === 200 ? res.json() : null))
     .catch((error) => console.log(error));
