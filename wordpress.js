@@ -39,7 +39,7 @@ async function createPost(title, content, imageId, categories, tags) {
       title: title,
       content: content,
       featured_media: imageId ? imageId : null,
-      status: "publish",
+      status: process.env.WP_POST_STATUS,
       categories: categories,
       tags: tags,
     }),
