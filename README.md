@@ -1,7 +1,5 @@
 # SEO ZABIJAKA
-**Cieszę się, że trafiłeś na to repozytorium. Jeżeli uważasz, że narzędzie jest przydatne to możesz postawić mi kawę na Buy Me A Coffe :)**
-
-<a href="https://www.buymeacoffee.com/marekfoltas" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+**Narzędzie nie jest dłużej wspierane i działa na przestarzałej wersji GPT. Projekt został przeniesiony i rozbudowany do wersji webowej. Jeżeli chcesz pisać treści z wykorzystaniem gpt-4 to zapraszam na https://copymate.app :)**
 
 **Spis treści**
 
